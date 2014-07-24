@@ -41,6 +41,7 @@ func main() {
 
 	}
 
-	f, _ = os.Create("pbm.png")
-	png.Encode(f, gray.SubImage(gray.Rect))
+	f2, _ := os.Create("pbm.png")
+	defer f2.Close()
+	png.Encode(f2, gray.SubImage(gray.Rect))
 }
