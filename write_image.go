@@ -11,6 +11,8 @@ import (
 )
 
 func main() {
+	makePBM()
+
 	f, _ := os.Open("./out.pbm")
 	defer f.Close()
 
