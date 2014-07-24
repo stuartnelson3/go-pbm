@@ -7,6 +7,7 @@ import (
 	"image/color"
 	"image/png"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -25,12 +26,10 @@ func main() {
 	r := image.Rect(0, 0, width, height)
 	gray := image.NewGray16(r)
 
-	// fmt.Println(width)
-	// fmt.Println(height)
-
 	for i := 0; i < height; i++ {
 		ln, _, _ = reader.ReadLine()
-		for j, n := range ln {
+		str := strings.Replace(string(ln), " ", "", -1)
+		for j, n := range str {
 			c := color.White
 			if string(n) == "1" {
 				c = color.Black
@@ -40,7 +39,6 @@ func main() {
 
 	}
 
-	// Write image
 	f, _ = os.Create("pbm.png")
 	png.Encode(f, gray.SubImage(gray.Rect))
 }
